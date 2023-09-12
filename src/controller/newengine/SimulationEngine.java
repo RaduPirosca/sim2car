@@ -211,6 +211,10 @@ public class SimulationEngine implements EngineInterface {
 						System.out.println("active cars 0");
 						run = false;
 					}
+					if (time > 500) {
+						run = false;
+					}
+					
 				}
 				logger.info(""+time);
 				System.out.println(""+time);

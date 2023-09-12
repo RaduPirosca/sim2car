@@ -119,6 +119,38 @@ public class GeoCar extends Entity {
 	public MapPoint getNextPos() {
 		return nextPos;
 	}
+	
+	// Returns the following
+	// 1 - north
+	// 2 - east
+	// -1 - south
+	// -2 - west
+	public int getDirection() {
+		if (this.getNextPos().location.getY() >= this.getCurrentPos().location.getY()) {
+			// might be north, east or west
+			if (this.getNextPos().location.getX() < this.getCurrentPos().location.getX()) {
+				// north or west
+				return this.getNextPos().location.getX() - this.getCurrentPos().location.getX() >
+					this.getNextPos().location.getY() - this.getCurrentPos().location.getY() ? -2 : 1;
+			} else  {
+				// north or east
+				return this.getCurrentPos().location.getX() - this.getNextPos().location.getX() >
+					this.getNextPos().location.getY() - this.getCurrentPos().location.getY() ? 2 : 1;
+			}
+		} else {
+			// might be south, east or west
+			if (this.getNextPos().location.getX() < this.getCurrentPos().location.getX()) {
+				// south or west
+				return this.getNextPos().location.getX() - this.getCurrentPos().location.getX() >
+					this.getCurrentPos().location.getY() - this.getNextPos().location.getY() ? -2 : -1;
+			} else  {
+				// north or east
+				return this.getCurrentPos().location.getX() - this.getNextPos().location.getX() >
+					this.getCurrentPos().location.getY() - this.getNextPos().location.getY() ? 2 : -1;
+			}
+			
+		}
+	}
 
 	public void setNextPos(MapPoint nextPos) {
 		this.nextPos = nextPos;

@@ -20,6 +20,7 @@ import model.parameters.MapConfig;
 import utils.TraceParsingTool;
 import utils.tracestool.Utils;
 
+import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 
@@ -45,8 +46,7 @@ public class Viewer {
 	public Viewer(final MapConfig mapConfig) {
 		if (Globals.showGUI) {
 			mapJ = new JMapViewer();
-			mapJ.setDisplayPositionByLatLon(mapConfig.getMapCentre().getX(),
-					mapConfig.getMapCentre().getY(), 11);
+			mapJ.setDisplayPosition( new Coordinate(mapConfig.getMapCentre().getX(),mapConfig.getMapCentre().getY()), 11);
 			serverView = new ServerView(mapConfig.getN(), mapConfig.getM(), new ArrayList<GeoServer>(), mapJ);
 			view = new View(mapConfig.getN(), mapConfig.getM(), mapJ, serverView, carViewList, trafficLightMasterList);
 		}

@@ -32,7 +32,7 @@ import com.dropbox.core.v2.users.FullAccount;
 public class DownloadCore {
 	List<String> fileList;
 	//Default download mode Dropbox
-	private String mode = "D";
+	private String mode = "F";
 	
 	public static void copyInputStream(InputStream in, OutputStream out) throws IOException {
 		byte[] buffer = new byte[1024];

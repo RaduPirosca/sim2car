@@ -29,6 +29,7 @@ import utils.tracestool.Utils;
 
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
+import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 
 import controller.newengine.EngineUtils;
 import controller.newengine.SimulationEngine;
@@ -64,7 +65,8 @@ public class View extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				System.out.println(e.getX() + " " + e.getY());
 				System.out.println(map.getPosition(e.getX(), e.getY()));
-				Coordinate coord = map.getPosition(e.getX(), e.getY());
+				ICoordinate icoord = map.getPosition(e.getX(), e.getY());
+				Coordinate coord = new Coordinate(icoord.getLon(), icoord.getLat());
 				
 				Node node = null;
 				double dist = Double.MAX_VALUE;

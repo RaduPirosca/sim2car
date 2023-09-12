@@ -37,10 +37,10 @@ public class TestRoutes extends JFrame {
 	public TestRoutes() {
 		super("Heatmap");
 		setLayout(new OverlayLayout());
-		mapConfig = MapConfiguration.getInstance("e:/Cursuri/master/cercetare/Sim2Car/trunk/src/rome.properties");
+		mapConfig = MapConfiguration.getInstance("/Users/radupirosca/Desktop/Desktop 30 Apr/sim2car/src/configurations/simulator/rome.properties");
 		map = new JMapViewer();
 		//map_lat_min 39.4140061 map_lon_min 115.6860661 map_lat_max 40.426 map_lon_max 117.1189678
-		map.setDisplayPositionByLatLon(mapConfig.getMapCentre().getY(), mapConfig.getMapCentre().getX(), 10);
+		map.setDisplayPosition( new Coordinate(mapConfig.getMapCentre().getX(),mapConfig.getMapCentre().getY()), 10);
 		map.setZoomContolsVisible(true);
 //		MapMarkerCircle alphaLayer = new MapMarkerCircle(
 //				new Coordinate(mapConfig.getMapCentre().getX(), mapConfig.getMapCentre().getY()), 1);
@@ -61,7 +61,7 @@ public class TestRoutes extends JFrame {
 		FileInputStream fstream;
 		try {
 			//fstream = new FileInputStream( "e:/Cursuri/master/cercetare/Sim2Car/phase11.txt" );
-			fstream = new FileInputStream( "e:/Cursuri/master/cercetare/Sim2Car/trunk/traces/CorectedRome/100.txt" );
+			fstream = new FileInputStream( "/Users/radupirosca/Desktop/Desktop 30 Apr/sim2car/processeddata/traces/rome/CorectedRome/100.txt" );
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 			String line;

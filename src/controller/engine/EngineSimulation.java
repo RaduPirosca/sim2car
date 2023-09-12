@@ -38,6 +38,7 @@ import model.parameters.MapConfiguration;
 import model.tiles.ClientTile;
 import model.tiles.GenericTile;
 
+import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 
 import utils.SphericalMercator;
@@ -144,8 +145,7 @@ public class EngineSimulation implements EngineInterface {
 		map = new GeoMap(mapConfig.getN(), mapConfig.getM(), sync);
 
 		mapJ = new JMapViewer();
-		mapJ.setDisplayPositionByLatLon(mapConfig.getMapCentre().getX(),
-				mapConfig.getMapCentre().getY(), 11);
+		mapJ.setDisplayPosition( new Coordinate(mapConfig.getMapCentre().getX(),mapConfig.getMapCentre().getY()), 11);
 
 		carsView = new ArrayList<CarView>();
 

@@ -3,6 +3,7 @@ package model;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import utils.Pair;
@@ -104,6 +105,7 @@ public class GeoTrafficLightMaster extends Entity{
 	 * queues. */
 	public void changeColor() {
 		Pair<Long, Integer> maxQueueKey = null;	
+		Optional<Pair<Long, Integer>> secondMaxKey = null;	
 	
 		if (Globals.useTrafficLights && timeExpired()) {
 			setChangeColor();
@@ -139,7 +141,7 @@ public class GeoTrafficLightMaster extends Entity{
 			}
 			
 			if (canUpdateColorsDynamic() && (waitingQueue.size() > 0 || timeExpired())) {
-				//System.out.println("Time expired: " + this.getId());
+//				System.out.println("Time expired: " + this.getId());
 				synchronized (updateLock) {
 					/* Find the traffic light with the maximum cars waiting */
 					for (Pair<Long, Integer> key : waitingQueue.keySet()) {
@@ -153,6 +155,8 @@ public class GeoTrafficLightMaster extends Entity{
 						if (waitingQueue.get(key).getSecond() > maxNoCarsWaiting) {
 							maxNoCarsWaiting = waitingQueue.get(key).getSecond();
 							maxQueueKey = key;
+							// Get the second max car
+//							secondMaxKey = waitingQueue.keySet().stream().filter(tempKey -> !tempKey.equals(key)).findFirst();
 						}
 					}
 					
@@ -168,6 +172,12 @@ public class GeoTrafficLightMaster extends Entity{
 							if (getTrafficLightColor(maxQueueKey.getFirst(), maxQueueKey.getSecond())
 									== Color.red) {
 								setChangeColor();
+//								if (secondMaxKey != null) {
+//									if (getTrafficLightColor(secondMaxKey.get().getFirst(), secondMaxKey.get().getSecond())
+//											== Color.red) {
+//										setChangeColor();
+//									}
+//								}
 							}
 							
 							/* Waiting queue statistics */
